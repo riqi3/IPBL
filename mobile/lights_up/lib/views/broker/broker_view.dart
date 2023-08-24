@@ -36,13 +36,15 @@ class BrokerView extends HookConsumerWidget {
     final passwordController = useTextEditingController();
     final clientIdController = useTextEditingController();
 
-    const defaultPort = 1883;
-
-    final server = useRef('');
+    const defaultPort = 8883;
+    // const defaultserver = 'uc9e97c8.ala.us-east-1.emqxsl.com';
+    // const deufa = 'uc9e97c8.ala.us-east-1.emqxsl.com'
+    // const defaultPort = 8883;
+    final server = useRef('uc9e97c8.ala.us-east-1.emqxsl.com');
     final port = useRef(defaultPort);
-    final username = useRef('');
-    final password = useRef('');
-    final clientId = useRef('');
+    final username = useRef('ipbl-2023');
+    final password = useRef('ipbl_5_2023');
+    final clientId = useRef('fluttermobile11');
     final useSecure = useState(false);
 
     useEffect(() {
@@ -255,6 +257,24 @@ class BrokerView extends HookConsumerWidget {
                           : kStrConnect,
                     ),
                   ),
+            ElevatedButton(
+              onPressed: () {
+                if (connState == AppConnectionState.connected) {
+                  // Navigate to another page here
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          TabPage(), // Replace with the actual page you want to navigate to
+                    ),
+                  );
+                } else {
+                  // Handle MQTT client connection
+                  handleMqttClientConnect();
+                }
+              },
+              child: null,
+            ),
           ],
         ),
       ),
